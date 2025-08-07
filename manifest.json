@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Domain Badge Checker",
+  "version": "1.0",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "http://127.0.0.1:3000/",
+    "http://localhost:3000/"
+  ]
+}
