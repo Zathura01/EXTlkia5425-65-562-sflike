@@ -7,7 +7,16 @@ app.use(cors());
 app.use(express.json());
 
 const MongoURI = "mongodb://localhost:27017/domainDB";
-mongoose.connect(process.env.MONGO_URI_DMNEXT);
+mongoose.connect(process.env.MONGO_URI_DMNEXT, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ MongoDB connected"))
+.catch(err => {
+  console.error("❌ MongoDB connection error:", err);
+  process.exit(1); // Exit on fatal error
+});
+
 
  const checkDomainRouter = require('./route/Search');
 app.use('/check-domain', checkDomainRouter); 

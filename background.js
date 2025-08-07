@@ -3,16 +3,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         try {
             const url = new URL(tab.url);
             let domain = url.hostname;
-
-            // Remove "www." prefix
             if (domain.startsWith("www.")) {
                 domain = domain.slice(4);
             }
-
             console.log("Checking domain:", domain);
-
-            // 🔁 Send to your server
-            fetch("http://localhost:3000/check-domain/searchDB", {
+            const devUrl = "http://localhost:3000"
+            const renderUrl = "https://booker-66sx.onrender.com"
+            const urlToUse = renderUrl || devUrl;
+            fetch(`${urlToUse}/check-domain/searchDB`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
