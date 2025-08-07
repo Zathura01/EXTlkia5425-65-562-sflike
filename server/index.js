@@ -1,13 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
+require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 const MongoURI = "mongodb://localhost:27017/domainDB";
-mongoose.connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URI_DMNEXT);
 
  const checkDomainRouter = require('./route/Search');
 app.use('/check-domain', checkDomainRouter); 
